@@ -1,0 +1,128 @@
+import java.util.Random;
+
+public class Demo3 {
+    public static void main(String[] args){
+        /*
+            双色球：
+            规则：红球在1--33之间产生
+                  蓝球在1--16之间产生
+            思路：
+                   a)用户选择红球(6个不重复红球)和蓝球
+                   b)
+                      1.电脑随机产生6个不同的红球
+                        1).定义一个数组，存放1-33的红球
+                           定义一个数组用来存放6个不同的红球
+                        2).随机产生一个介于0-32之间的数字(红球池的索引)，判定红球池对应索引的数据是否为0，若
+                            不为0，说明该小球未出现过，存入，并且将红球池对应的位置置为0，否则，出现过，继续选择
+                            重复这个过程，直到选中6个求
+
+                      2.电脑产生一个蓝球
+         */
+
+        //用户输入红球
+        int a2=0;
+        int a3=0;
+        int a4=0;
+        int a5=0;
+        int a6=0;
+        int a7=0;
+        int a8=0;
+        int a9=0;
+        while (a2<10000000) {
+
+            Random random = new Random();
+            int[] redBall = new int[33];
+            for (int k = 0; k < redBall.length; k++) {
+                redBall[k] = k + 1;
+            }
+            int[] userRedBall = new int[6];
+            for (int z = 0; z < userRedBall.length; z++) {
+                while (true) {
+                    //随机产生0-32中的数字
+                    int index1 = random.nextInt(33);
+                    if (redBall[index1] != 0) {
+                        userRedBall[z] = redBall[index1];
+                        redBall[index1] = 0;
+                        break;
+                    }
+                }
+            }
+            int userBlueBall = random.nextInt(16) + 1;
+
+
+            //电脑随机产生红球
+            //电脑红球池
+            int[] computerRedBall = new int[6];
+            //向红球池中填球
+
+
+            for (int j = 0; j < computerRedBall.length; j++) {
+                while (true) {
+                    //随机产生0-32中的数字
+                    int index = random.nextInt(33);
+                    if (redBall[index] != 0) {
+                        computerRedBall[j] = redBall[index];
+                        redBall[index] = 0;
+                        break;
+                    }
+                }
+            }
+            int computerBlueBall = random.nextInt(16) + 1;
+
+            /*System.out.print("电脑产生的红球为: ");
+            System.out.println(Arrays.toString(computerRedBall));
+            System.out.print("电脑产生的蓝球为: ");
+            System.out.println(computerBlueBall);*/
+
+            int h1=0;
+            int h2=0;
+            for (int num1:userReadBall){
+                for (int num2:computerReadBall){
+
+                    if (num1==num2){
+                        h1++;
+                        break;
+                    }
+                }
+            }
+            if (userBlueBall==computerBlueBall){
+                h2++;
+            }
+
+            if (h1+h2==7) {
+                a3++;
+
+            } else if (h1+h2==6) {
+                a4++;
+
+            } else if (h1+h2==5) {
+                a5++;
+
+            } else if (h1+h2==4){
+                a6++;
+
+            } else if (h1+h2==3){
+                a7++;
+
+            } else if (h1+h2==2) {
+                a8++;
+
+            }else if (h1+h2==1){
+                a9++;
+            } else {
+                //System.out.println("谢谢惠顾");
+            }
+            a2++;
+        }
+        System.out.println("总共测试了"+a2+"次");
+        System.out.println("一等奖 "+a3+"次");
+        System.out.println("二等奖 "+a4+"次");
+        System.out.println("三等奖 "+a5+"次");
+        System.out.println("四等奖 "+a6+"次");
+        System.out.println("四等奖 "+a6+"次");
+        System.out.println("五等奖 "+a7+"次");
+        System.out.println("六等奖 "+a8+"次");
+        System.out.println("七等奖 "+a9+"次");
+
+    }
+}
